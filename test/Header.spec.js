@@ -1,23 +1,31 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
-
+import Vuex from 'vuex'
 import Header from '@/components/General/Header.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.use(Vuex)
 
-describe('Header Componenti >', () => {
+let store = new Vuex.Store({
+  getters: {
+    getCart: jest.fn(() => []),
+  },
+})
+
+describe('Header Componenti', () => {
   const wrapper = shallowMount(Header, {
     localVue,
+    store,
     stubs: {
       NuxtLink: true,
     },
   })
-  test('vue vm instancei olarak mountlandi', () => {
+  test('Vue vm instance olarak mountlandi', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
-  test('markup snapshota uyuyor', () => {
+  test('Markup snapshot ile eslesiyor', () => {
     expect(wrapper.vm).toMatchSnapshot()
   })
 })

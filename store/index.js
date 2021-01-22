@@ -1,4 +1,4 @@
-import * as api from "@/store/api.js";
+import * as api from "~/static/api.js";
 
 export const state = () => ({
   carousel: [],
