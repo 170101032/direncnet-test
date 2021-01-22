@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+
+  client:
+    image: nginx
+    container_name: direncnetvue-client
+    restart: always
+    volumes:
+      - dist:/var/www/html:ro
+    ports:
+     - "8080:8080"
+    #environment:
