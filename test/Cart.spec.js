@@ -1,17 +1,20 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import Vuex from 'vuex'
-import ProductPage from '@/pages/ProductPage.vue'
+import Cart from '@/components/Cart/Cart.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(Vuex)
 
 let store = new Vuex.Store({
+  getters: {
+    getCart: jest.fn(() => []),
+  },
 })
 
-describe('ProductPage Sayfasi', () => {
-  const wrapper = shallowMount(ProductPage, {
+describe('Cart Componenti', () => {
+  const wrapper = shallowMount(Cart, {
     localVue,
     store,
     stubs: {

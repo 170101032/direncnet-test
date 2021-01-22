@@ -16,13 +16,13 @@
 <script>
 export default {
   name: 'Carousel',
-  computed: {
-    carousels() {
-      return this.$store.getters.getCarousel
-    },
+  data() {
+    return {
+      carousels: [],
+    }
   },
   created() {
-    this.$store.dispatch('fillCarousel')
+    this.carousels = this.$store.getters.getCarousel
   },
 }
 </script>

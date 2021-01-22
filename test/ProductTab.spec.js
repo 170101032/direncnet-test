@@ -1,17 +1,29 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Buefy from 'buefy'
 import Vuex from 'vuex'
-import ProductPage from '@/pages/ProductPage.vue'
+import ProductTab from '@/components/ProductDetail/ProductTab.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(Vuex)
 
 let store = new Vuex.Store({
+  getters: {
+    getProductDetails: jest.fn(() => ({
+      name: null,
+      descr: null,
+      brand: null,
+      code: null,
+      price: null,
+      images: [],
+      comments: [],
+      similarProducts: [],
+    })),
+  },
 })
 
-describe('ProductPage Sayfasi', () => {
-  const wrapper = shallowMount(ProductPage, {
+describe('ProductTab Componenti', () => {
+  const wrapper = shallowMount(ProductTab, {
     localVue,
     store,
     stubs: {
