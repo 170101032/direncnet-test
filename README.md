@@ -9,20 +9,8 @@
         npm install
         npm run dev
 
-### Method2: GNU Make:
-
-        make dev
-
-## Referanslar
-
-## Gereksinimler
-
-- [x] Vue Jest test framework kurulumu.
-- [X] Jest framework NuxtJS ozel ayarlarinin yapilmasi.
-- [X]
-- [X]
-- [X]
-
+        npm test
+        npm test -- -u
 
 ## Bilinen sorunlar
 

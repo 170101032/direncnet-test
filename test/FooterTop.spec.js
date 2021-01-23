@@ -13,6 +13,7 @@ let store = new Vuex.Store({
 describe('FooterTop Componenti', () => {
   const wrapper = shallowMount(FooterTop, {
     localVue,
+    store,
     stubs: {
       NuxtLink: true,
     },

@@ -13,6 +13,7 @@ let store = new Vuex.Store({
 describe('Navbar Componenti', () => {
   const wrapper = shallowMount(Navbar, {
     localVue,
+    store,
     stubs: {
       NuxtLink: true,
     },
