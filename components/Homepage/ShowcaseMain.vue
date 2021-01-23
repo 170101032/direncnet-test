@@ -7,7 +7,7 @@
       <div class="columns is-multiline carditem p-0 m-0">
         <NuxtLink to="/productpage">
           <div class="column is-12">
-            <img :src="require('@/assets/products/' + item.img)" />
+            <!--    <img :src="require('@/assets/products/' + item.img)" /> -->
           </div>
         </NuxtLink>
         <div class="column is-12">

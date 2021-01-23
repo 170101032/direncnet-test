@@ -7,7 +7,25 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(Vuex)
 
-let store = new Vuex.Store({})
+let mocks = {
+  getProducts: jest.fn(() => [
+    {
+      title: 'Raspberry Pi 4 4GB - Model B',
+      img: 'raspbery.jpg',
+      price: 392.49,
+      link: '/productpage',
+    },
+  ]),
+  addCart: jest.fn(),
+}
+let store = new Vuex.Store({
+  getters: {
+    getProducts: mocks.getProducts,
+  },
+  actions: {
+    addCart: mocks.addCart,
+  },
+})
 
 describe('ShowcaseMain Componenti', () => {
   const wrapper = shallowMount(ShowcaseMain, {
@@ -23,5 +41,16 @@ describe('ShowcaseMain Componenti', () => {
 
   test('Markup snapshot ile eslesiyor', () => {
     expect(wrapper.vm).toMatchSnapshot()
+  })
+
+  test('Vuestore dan urun listesi itemleri yuklenir', () => {
+    expect(mocks.getProducts).toHaveBeenCalled()
+  })
+
+  test('Sepete ekle tusu modal cart menuyu acar', () => {
+    expect(wrapper.vm.cartmodalActive).toBeFalsy()
+    const button = wrapper.find('.cardadd')
+    button.trigger('click')
+    expect(wrapper.vm.cartmodalActive).toBeTruthy()
   })
 })

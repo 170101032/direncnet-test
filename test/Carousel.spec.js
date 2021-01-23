@@ -7,9 +7,12 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(Vuex)
 
+let mocks = {
+  getCarousel: jest.fn(() => []),
+}
 let store = new Vuex.Store({
-  actions: {
-    fillCarousel: jest.fn(),
+  getters: {
+    getCarousel: mocks.getCarousel,
   },
 })
 
@@ -27,5 +30,9 @@ describe('Carousel Componenti', () => {
 
   test('Markup snapshot ile eslesiyor', () => {
     expect(wrapper.vm).toMatchSnapshot()
+  })
+
+  test('Vuestore dan carousel itemleri yuklenir', () => {
+    expect(mocks.getCarousel).toHaveBeenCalled()
   })
 })

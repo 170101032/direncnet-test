@@ -1,14 +1,14 @@
 <template>
-  <div v-if="visible" class="columns is-multiline floatbar m-0 p-0">
+  <div v-show="visible" class="columns is-multiline floatbar m-0 p-0">
     <div class="column is-12">
       <div class="container">
         <div class="columns mx-4">
           <div class="column is-5">
             <div class="columns">
               <div class="column is-2 floatbar-img m-2">
-                <img
+               <!-- <img
                   :src="require('@/assets/detail/' + productDetails.image)"
-                />
+                />-->
               </div>
               <div class="column p-4">
                 <div class="column is floatbar-title">

@@ -1,4 +1,4 @@
-import * as api from '~/static/api.js'
+import * as api from '~/store/api.js'
 
 export const state = () => ({
   cart: [],

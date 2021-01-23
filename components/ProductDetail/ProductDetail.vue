@@ -63,7 +63,7 @@
                 <div class="column is-6">
                   <div class="columns p-4">
                     <a
-                      class="column is-3 quantity-button"
+                      class="column is-3 quantity-button downquan"
                       @click="quantity > 1 ? quantity-- : (quantity = 1)"
                       ><p>-</p></a
                     >
@@ -73,7 +73,7 @@
                       v-model="quantity"
                       disabled
                     />
-                    <a class="column is-3 quantity-button" @click="quantity++"
+                    <a class="column is-3 quantity-button upquan" @click="quantity++"
                       ><p>+</p></a
                     >
                   </div>
@@ -113,7 +113,6 @@ export default {
   },
   methods: {
     addCart(item) {
-      console.log(this.quantity)
       this.$store.dispatch('addCart', {
         name: item.name,
         quantity: this.quantity,

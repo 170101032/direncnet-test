@@ -7,9 +7,9 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(Vuex)
 
-let store = new Vuex.Store({
-  getters: {
-    getProductDetails: jest.fn(() => ({
+let mocks = {
+  getProductDetails: jest.fn(() => [
+    {
       name: null,
       descr: null,
       brand: null,
@@ -18,7 +18,16 @@ let store = new Vuex.Store({
       images: [],
       comments: [],
       similarProducts: [],
-    })),
+    },
+  ]),
+  addCart: jest.fn(),
+}
+let store = new Vuex.Store({
+  getters: {
+    getProductDetails: mocks.getProductDetails,
+  },
+  actions: {
+    addCart: mocks.addCart,
   },
 })
 
@@ -36,5 +45,30 @@ describe('ProductDetail Componenti', () => {
 
   test('Markup snapshot ile eslesiyor', () => {
     expect(wrapper.vm).toMatchSnapshot()
+  })
+
+  test('Api dan urun aciklamalari/detaylari yuklenir', () => {
+    expect(mocks.getProductDetails).toHaveBeenCalled()
+  })
+
+  test('Sepete ekle metodu calistirir', () => {
+    const button = wrapper.find('.add-cart-button')
+    button.trigger('click')
+    expect(mocks.addCart).toHaveBeenCalled()
+  })
+
+  test('Arttirma butonu miktari arttirir', () => {
+    const prev = wrapper.vm.quantity
+    const button = wrapper.find('.upquan')
+    button.trigger('click')
+    button.trigger('click')
+    expect(wrapper.vm.quantity).toBe(prev + 2)
+  })
+
+  test('Azaltma butonu miktari azaltir', () => {
+    const prev = wrapper.vm.quantity
+    const button = wrapper.find('.downquan')
+    button.trigger('click')
+    expect(wrapper.vm.quantity).toBe(prev - 1)
   })
 })

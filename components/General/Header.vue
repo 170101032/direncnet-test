@@ -8,7 +8,7 @@
               ><img class="pr-2" src="@/assets/header/fb.png" />Facebook Ile
               Baglan</a
             >
-            <a class="pl-4" @click="signinActive = true"
+            <a class="signinbutton pl-4" @click="signinActive = true"
               ><img class="pr-2" src="@/assets/header/log_in.png" />Uye
               Girisi</a
             >
@@ -28,7 +28,7 @@
         <div class="columns pt-2">
           <div class="column">
             <a href="/">
-              <img src="@/assets/header/logo.png" />
+              <img class="direnclogo" src="@/assets/header/logo.png" />
             </a>
           </div>
           <div class="column">
@@ -122,15 +122,14 @@ export default {
   components: {
     SignInModal,
   },
-  computed: {
-    cart() {
-      return this.$store.getters.getCart
-    },
-  },
   data() {
     return {
+      cart: [],
       signinActive: false,
     }
+  },
+  created() {
+    this.cart = this.$store.getters.getCart
   },
 }
 </script>
